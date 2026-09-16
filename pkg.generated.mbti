@@ -1,0 +1,256 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "2200732518gjy/moonstix"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn common_relationship_types() -> Array[String]
+
+pub fn document_objects(Document) -> Array[StixObject]
+
+pub fn id_type_matches(StixId, String) -> Bool
+
+pub fn is_common_relationship_type(String) -> Bool
+
+pub fn is_open_vocab_value(String) -> Bool
+
+pub fn issue(String, String, String) -> Issue
+
+pub fn known_type_names() -> Array[String]
+
+pub fn lookup_type_spec(String) -> TypeSpec?
+
+pub fn object_kind_of(String) -> ObjectKind
+
+pub fn parse_and_validate(String) -> Result[(Document, Array[Issue]), StixError]
+
+pub fn parse_document(String) -> Result[Document, StixError]
+
+pub fn parse_document_json(Json) -> Result[Document, StixError]
+
+pub fn parse_pattern(String) -> Result[PatternExpr, String]
+
+pub fn parse_stix_id(String) -> Result[StixId, String]
+
+pub fn parse_timestamp(String) -> Result[Timestamp, String]
+
+pub fn pattern_object_types(PatternExpr) -> Array[String]
+
+pub fn relationship_allowed(String, String, String) -> Bool
+
+pub fn stringify_document(Document) -> String
+
+pub fn timestamp_is_rfc3339(String) -> Bool
+
+pub fn valid_email(String) -> Bool
+
+pub fn valid_hex_binary(String) -> Bool
+
+pub fn valid_ipv4(String) -> Bool
+
+pub fn valid_ipv6(String) -> Bool
+
+pub fn valid_mac(String) -> Bool
+
+pub fn valid_stix_type_name(String) -> Bool
+
+pub fn valid_stix_uuid(String) -> Bool
+
+pub fn valid_url(String) -> Bool
+
+pub fn validate_document(Document) -> Array[Issue]
+
+pub fn validate_pattern_paths(PatternExpr) -> Array[Issue]
+
+pub fn vocab_contains(String, String) -> Bool
+
+pub fn vocab_values(String) -> Array[String]
+
+// Errors
+
+// Types and methods
+pub(all) enum CompOp {
+  Eq
+  Ne
+  Gt
+  Lt
+  Ge
+  Le
+} derive(Eq, @debug.Debug)
+
+pub(all) enum ComparisonExpr {
+  Compare(ObjectPath, CompOp, PatternValue)
+  In(ObjectPath, Array[PatternValue])
+  Like(ObjectPath, String)
+  Matches(ObjectPath, String)
+  IsSubset(ObjectPath, String)
+  IsSuperset(ObjectPath, String)
+  Exists(ObjectPath)
+  Not(ComparisonExpr)
+  And(ComparisonExpr, ComparisonExpr)
+  Or(ComparisonExpr, ComparisonExpr)
+} derive(Eq, @debug.Debug)
+
+pub(all) enum Document {
+  Bundle(StixBundle)
+  Object(StixObject)
+} derive(@debug.Debug)
+
+pub(all) struct FieldSpec {
+  name : String
+  required : Bool
+  shape : ValueShape
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Issue {
+  code : String
+  path : String
+  message : String
+} derive(Eq, @debug.Debug)
+pub fn Issue::at(Self) -> String
+pub fn Issue::code_name(Self) -> String
+
+pub(all) enum ObjectKind {
+  Sdo
+  Sro
+  Sco
+  Meta
+  Bundle
+  Custom
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ObjectPath {
+  object_type : String
+  steps : Array[PathStep]
+} derive(Eq, @debug.Debug)
+
+pub(all) enum PathStep {
+  Property(String)
+  Index(Int)
+  AnyIndex
+} derive(Eq, @debug.Debug)
+
+pub(all) enum PatternExpr {
+  Observation(ComparisonExpr)
+  And(PatternExpr, PatternExpr)
+  Or(PatternExpr, PatternExpr)
+  FollowedBy(PatternExpr, PatternExpr)
+  StartStop(PatternExpr, String, String)
+  Within(PatternExpr, String)
+  Repeats(PatternExpr, String)
+} derive(Eq, @debug.Debug)
+
+pub(all) enum PatternValue {
+  String(String)
+  Bool(Bool)
+  Number(String)
+  Timestamp(String)
+  Null
+} derive(Eq, @debug.Debug)
+
+pub(all) struct StixBundle {
+  id : String
+  objects : Array[StixObject]
+  raw : Json
+} derive(@debug.Debug)
+
+pub(all) enum StixError {
+  JsonSyntax(String)
+  NotObject
+  UnexpectedRoot(String)
+  Pattern(String)
+} derive(Eq, @debug.Debug)
+pub fn StixError::message(Self) -> String
+
+pub(all) struct StixId {
+  type_name : String
+  uuid : String
+  text : String
+} derive(Eq, @debug.Debug)
+
+pub(all) struct StixObject {
+  stix_type : String
+  id : String
+  spec_version : String
+  kind : ObjectKind
+  properties : Map[String, Json]
+  raw : Json
+} derive(@debug.Debug)
+
+pub(all) struct Timestamp {
+  year : Int
+  month : Int
+  day : Int
+  hour : Int
+  minute : Int
+  second : Int
+  fraction : String
+  offset_minutes : Int
+  text : String
+} derive(Eq, @debug.Debug)
+
+pub(all) enum Tok {
+  Eof
+  Ident(String)
+  String(String)
+  Number(String)
+  Timestamp(String)
+  LBrack
+  RBrack
+  LParen
+  RParen
+  Colon
+  Dot
+  Star
+  Comma
+  Eq
+  Ne
+  Gt
+  Lt
+  Ge
+  Le
+} derive(Eq, @debug.Debug)
+
+pub(all) struct TypeSpec {
+  type_name : String
+  kind : ObjectKind
+  fields : Array[FieldSpec]
+  require_any : Array[String]
+} derive(Eq, @debug.Debug)
+
+pub(all) enum ValueShape {
+  String
+  Boolean
+  Integer
+  NonNegativeInteger
+  Timestamp
+  Identifier
+  IdentifierOf(String)
+  StringList
+  IdentifierList
+  IdentifierListOf(String)
+  OpenVocab(String)
+  ClosedVocab(String)
+  OpenVocabList(String)
+  Hashes
+  Dictionary
+  ObjectList
+  ExternalReferences
+  KillChainPhases
+  GranularMarkings
+  Extensions
+  Pattern
+  HexBinary
+  IPv4
+  IPv6
+  Mac
+  Email
+  Url
+  Any
+} derive(Eq, @debug.Debug)
+
+// Type aliases
+
+// Traits
