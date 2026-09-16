@@ -1,0 +1,13 @@
+_build/
+target/
+.mooncakes/
+*.tmp
+*.log
+_write*.py
+_w_*.py
+_fix*.py
+_gen*.py
+_dump*.txt
+_hex.txt
+_stat.txt
+_iso_*.txt
