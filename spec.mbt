@@ -61,7 +61,7 @@ pub(all) struct TypeSpec {
 
 ///|
 fn field(name : String, required : Bool, shape : ValueShape) -> FieldSpec {
-  { name, required, shape, }
+  { name, required, shape }
 }
 
 ///|
@@ -71,7 +71,7 @@ fn spec(
   fields : Array[FieldSpec],
   require_any : Array[String],
 ) -> TypeSpec {
-  { type_name, kind, fields, require_any, }
+  { type_name, kind, fields, require_any }
 }
 
 ///|

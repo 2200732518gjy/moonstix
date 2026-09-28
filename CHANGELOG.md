@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Point MoonCakes docs at README.mbt.md so the package page shows the project README instead of a stub title.
+- Record the published moon add 2200732518gjy/moonstix install path.
+
 ## 0.1.0
 
 - Parse and stringify STIX 2.1 Bundles and single objects.
@@ -7,3 +12,4 @@
 - Check identifier uniqueness, object-ref integrity, and a relationship allow-table.
 - Parse a STIX patterning subset into an AST and report path/grammar issues on `indicator` objects.
 - Ship three runnable examples and wasm-gc tests for identifiers, timestamps, patterns, and bundle graphs.
+

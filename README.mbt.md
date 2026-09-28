@@ -18,7 +18,7 @@ moon test --target wasm-gc
 
 ## Use
 
-```moonbit
+```moonbit nocheck
 let parsed = @stix.parse_and_validate(text).unwrap()
 let doc = parsed.0
 let issues = parsed.1

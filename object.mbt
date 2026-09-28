@@ -79,7 +79,7 @@ fn parse_bundle(
           }
       }
   }
-  Ok({ id, objects, raw, })
+  Ok({ id, objects, raw })
 }
 
 ///|

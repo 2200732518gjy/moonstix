@@ -465,7 +465,7 @@ fn parse_object_path(
       _ => break
     }
   }
-  Ok(({ object_type: type_name.0, steps, }, cur))
+  Ok(({ object_type: type_name.0, steps }, cur))
 }
 
 ///|

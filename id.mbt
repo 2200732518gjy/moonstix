@@ -25,7 +25,7 @@ pub fn parse_stix_id(text : String) -> Result[StixId, String] {
       if !valid_stix_uuid(uuid) {
         return Err("invalid UUID in STIX id '\{text}'")
       }
-      Ok({ type_name, uuid, text, })
+      Ok({ type_name, uuid, text })
     }
   }
 }

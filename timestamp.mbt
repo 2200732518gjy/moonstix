@@ -79,7 +79,7 @@ pub fn parse_timestamp(text : String) -> Result[Timestamp, String] {
     Ok(value) => value
     Err(err) => return Err(err)
   }
-  Ok({ year, month, day, hour, minute, second, fraction, offset_minutes, text, })
+  Ok({ year, month, day, hour, minute, second, fraction, offset_minutes, text })
 }
 
 ///|

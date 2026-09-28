@@ -17,7 +17,7 @@ pub(all) enum StixError {
 
 ///|
 pub fn issue(code : String, path : String, message : String) -> Issue {
-  { code, path, message, }
+  { code, path, message }
 }
 
 ///|

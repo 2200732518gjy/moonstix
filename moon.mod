@@ -1,8 +1,8 @@
 name = "2200732518gjy/moonstix"
 
-version = "0.1.0"
+version = "0.1.1"
 
-readme = "README.md"
+readme = "README.mbt.md"
 
 license = "Apache-2.0"
 
