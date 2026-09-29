@@ -10,6 +10,42 @@ pub(all) enum CompOp {
 } derive(Eq, Debug)
 
 ///|
+pub extend PatternExpr with Eq::{equal, not_equal}
+
+///|
+pub extend PatternExpr with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend ComparisonExpr with Eq::{equal, not_equal}
+
+///|
+pub extend ComparisonExpr with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend PatternValue with Eq::{equal, not_equal}
+
+///|
+pub extend PatternValue with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend ObjectPath with Eq::{equal, not_equal}
+
+///|
+pub extend ObjectPath with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend PathStep with Eq::{equal, not_equal}
+
+///|
+pub extend PathStep with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend CompOp with Eq::{equal, not_equal}
+
+///|
+pub extend CompOp with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 /// One step of an object path after the type name.
 pub(all) enum PathStep {
   Property(String)
@@ -465,7 +501,7 @@ fn parse_object_path(
       _ => break
     }
   }
-  Ok(({ object_type: type_name.0, steps }, cur))
+  Ok(({ object_type: type_name.0, steps, }, cur))
 }
 
 ///|

@@ -10,6 +10,15 @@ pub(all) struct StixObject {
 } derive(Debug)
 
 ///|
+pub extend Document with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend StixBundle with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend StixObject with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 /// Bundle of STIX objects.
 pub(all) struct StixBundle {
   id : String
@@ -79,7 +88,7 @@ fn parse_bundle(
           }
       }
   }
-  Ok({ id, objects, raw })
+  Ok({ id, objects, raw, })
 }
 
 ///|

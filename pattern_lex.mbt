@@ -23,6 +23,12 @@ pub(all) enum Tok {
 } derive(Eq, Debug)
 
 ///|
+pub extend Tok with Eq::{equal, not_equal}
+
+///|
+pub extend Tok with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 fn tok_label(tok : Tok) -> String {
   match tok {
     Eof => "end of pattern"

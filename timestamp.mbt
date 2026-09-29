@@ -13,6 +13,12 @@ pub(all) struct Timestamp {
 } derive(Eq, Debug)
 
 ///|
+pub extend Timestamp with Eq::{equal, not_equal}
+
+///|
+pub extend Timestamp with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 pub fn parse_timestamp(text : String) -> Result[Timestamp, String] {
   if text.length() < 19 {
     return Err("timestamp is too short")
@@ -79,7 +85,7 @@ pub fn parse_timestamp(text : String) -> Result[Timestamp, String] {
     Ok(value) => value
     Err(err) => return Err(err)
   }
-  Ok({ year, month, day, hour, minute, second, fraction, offset_minutes, text })
+  Ok({ year, month, day, hour, minute, second, fraction, offset_minutes, text, })
 }
 
 ///|

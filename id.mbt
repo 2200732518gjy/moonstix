@@ -7,6 +7,12 @@ pub(all) struct StixId {
 } derive(Eq, Debug)
 
 ///|
+pub extend StixId with Eq::{equal, not_equal}
+
+///|
+pub extend StixId with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 pub fn parse_stix_id(text : String) -> Result[StixId, String] {
   if text.length() == 0 {
     return Err("empty STIX id")
@@ -25,7 +31,7 @@ pub fn parse_stix_id(text : String) -> Result[StixId, String] {
       if !valid_stix_uuid(uuid) {
         return Err("invalid UUID in STIX id '\{text}'")
       }
-      Ok({ type_name, uuid, text })
+      Ok({ type_name, uuid, text, })
     }
   }
 }

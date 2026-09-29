@@ -8,11 +8,12 @@ Package name: `2200732518gjy/moonstix`. License: Apache-2.0, with BSD-3-Clause a
 
 ## Install
 
-Install from mooncakes.io and use a recent MoonBit toolchain (wasm-gc is the preferred target):
+Install from mooncakes.io and use MoonBit `moonc >= 0.10.14` (wasm-gc is the preferred target):
 
 ```bash
 moon add 2200732518gjy/moonstix
 moon check --target wasm-gc --deny-warn
+moon build --target wasm-gc --deny-warn
 moon test --target wasm-gc
 ```
 
@@ -50,13 +51,15 @@ Not supported: TAXII 2.x transport, MITRE ATT&CK catalog sync, CVE/NVD storage, 
 ## Verify
 
 ```bash
+python tools/check_moonc_version.py --minimum 0.10.14
 python tools/count_effective_moonbit.py --check-core 2000
 moon fmt --check
 moon check --target wasm-gc --deny-warn
+moon build --target wasm-gc --deny-warn
 moon test --target wasm-gc
 ```
 
 ## License
 
-Apache-2.0. See `LICENSE` and `THIRD_PARTY.md`. AI assistance is disclosed in `AI_USAGE.md`. The library does not open network sockets or read host telemetry.
+Apache-2.0. See `LICENSE` and `THIRD_PARTY.md`. AI assistance is disclosed in `AI_USAGE.md`. The library does not open network sockets or read host telemetry. GitHub Actions repeats formatting, the 2,000-line source threshold, four backend checks, a wasm-gc build, three backend test runs, and all three examples.
 

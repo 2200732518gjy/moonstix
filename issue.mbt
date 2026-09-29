@@ -7,6 +7,18 @@ pub(all) struct Issue {
 } derive(Eq, Debug)
 
 ///|
+pub extend StixError with Eq::{equal, not_equal}
+
+///|
+pub extend StixError with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend Issue with Eq::{equal, not_equal}
+
+///|
+pub extend Issue with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 /// Fatal document-level failure. Property problems are reported as `Issue`.
 pub(all) enum StixError {
   JsonSyntax(String)
@@ -17,7 +29,7 @@ pub(all) enum StixError {
 
 ///|
 pub fn issue(code : String, path : String, message : String) -> Issue {
-  { code, path, message }
+  { code, path, message, }
 }
 
 ///|

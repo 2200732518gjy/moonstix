@@ -79,6 +79,9 @@ pub(all) enum CompOp {
   Ge
   Le
 } derive(Eq, @debug.Debug)
+pub fn CompOp::equal(Self, Self) -> Bool
+pub fn CompOp::not_equal(Self, Self) -> Bool
+pub fn CompOp::to_repr(Self) -> @debug.Repr
 
 pub(all) enum ComparisonExpr {
   Compare(ObjectPath, CompOp, PatternValue)
@@ -92,17 +95,24 @@ pub(all) enum ComparisonExpr {
   And(ComparisonExpr, ComparisonExpr)
   Or(ComparisonExpr, ComparisonExpr)
 } derive(Eq, @debug.Debug)
+pub fn ComparisonExpr::equal(Self, Self) -> Bool
+pub fn ComparisonExpr::not_equal(Self, Self) -> Bool
+pub fn ComparisonExpr::to_repr(Self) -> @debug.Repr
 
 pub(all) enum Document {
   Bundle(StixBundle)
   Object(StixObject)
 } derive(@debug.Debug)
+pub fn Document::to_repr(Self) -> @debug.Repr
 
 pub(all) struct FieldSpec {
   name : String
   required : Bool
   shape : ValueShape
 } derive(Eq, @debug.Debug)
+pub fn FieldSpec::equal(Self, Self) -> Bool
+pub fn FieldSpec::not_equal(Self, Self) -> Bool
+pub fn FieldSpec::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Issue {
   code : String
@@ -111,6 +121,9 @@ pub(all) struct Issue {
 } derive(Eq, @debug.Debug)
 pub fn Issue::at(Self) -> String
 pub fn Issue::code_name(Self) -> String
+pub fn Issue::equal(Self, Self) -> Bool
+pub fn Issue::not_equal(Self, Self) -> Bool
+pub fn Issue::to_repr(Self) -> @debug.Repr
 
 pub(all) enum ObjectKind {
   Sdo
@@ -120,17 +133,26 @@ pub(all) enum ObjectKind {
   Bundle
   Custom
 } derive(Eq, @debug.Debug)
+pub fn ObjectKind::equal(Self, Self) -> Bool
+pub fn ObjectKind::not_equal(Self, Self) -> Bool
+pub fn ObjectKind::to_repr(Self) -> @debug.Repr
 
 pub(all) struct ObjectPath {
   object_type : String
   steps : Array[PathStep]
 } derive(Eq, @debug.Debug)
+pub fn ObjectPath::equal(Self, Self) -> Bool
+pub fn ObjectPath::not_equal(Self, Self) -> Bool
+pub fn ObjectPath::to_repr(Self) -> @debug.Repr
 
 pub(all) enum PathStep {
   Property(String)
   Index(Int)
   AnyIndex
 } derive(Eq, @debug.Debug)
+pub fn PathStep::equal(Self, Self) -> Bool
+pub fn PathStep::not_equal(Self, Self) -> Bool
+pub fn PathStep::to_repr(Self) -> @debug.Repr
 
 pub(all) enum PatternExpr {
   Observation(ComparisonExpr)
@@ -141,6 +163,9 @@ pub(all) enum PatternExpr {
   Within(PatternExpr, String)
   Repeats(PatternExpr, String)
 } derive(Eq, @debug.Debug)
+pub fn PatternExpr::equal(Self, Self) -> Bool
+pub fn PatternExpr::not_equal(Self, Self) -> Bool
+pub fn PatternExpr::to_repr(Self) -> @debug.Repr
 
 pub(all) enum PatternValue {
   String(String)
@@ -149,12 +174,16 @@ pub(all) enum PatternValue {
   Timestamp(String)
   Null
 } derive(Eq, @debug.Debug)
+pub fn PatternValue::equal(Self, Self) -> Bool
+pub fn PatternValue::not_equal(Self, Self) -> Bool
+pub fn PatternValue::to_repr(Self) -> @debug.Repr
 
 pub(all) struct StixBundle {
   id : String
   objects : Array[StixObject]
   raw : Json
 } derive(@debug.Debug)
+pub fn StixBundle::to_repr(Self) -> @debug.Repr
 
 pub(all) enum StixError {
   JsonSyntax(String)
@@ -162,13 +191,19 @@ pub(all) enum StixError {
   UnexpectedRoot(String)
   Pattern(String)
 } derive(Eq, @debug.Debug)
+pub fn StixError::equal(Self, Self) -> Bool
 pub fn StixError::message(Self) -> String
+pub fn StixError::not_equal(Self, Self) -> Bool
+pub fn StixError::to_repr(Self) -> @debug.Repr
 
 pub(all) struct StixId {
   type_name : String
   uuid : String
   text : String
 } derive(Eq, @debug.Debug)
+pub fn StixId::equal(Self, Self) -> Bool
+pub fn StixId::not_equal(Self, Self) -> Bool
+pub fn StixId::to_repr(Self) -> @debug.Repr
 
 pub(all) struct StixObject {
   stix_type : String
@@ -178,6 +213,7 @@ pub(all) struct StixObject {
   properties : Map[String, Json]
   raw : Json
 } derive(@debug.Debug)
+pub fn StixObject::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Timestamp {
   year : Int
@@ -190,6 +226,9 @@ pub(all) struct Timestamp {
   offset_minutes : Int
   text : String
 } derive(Eq, @debug.Debug)
+pub fn Timestamp::equal(Self, Self) -> Bool
+pub fn Timestamp::not_equal(Self, Self) -> Bool
+pub fn Timestamp::to_repr(Self) -> @debug.Repr
 
 pub(all) enum Tok {
   Eof
@@ -212,6 +251,9 @@ pub(all) enum Tok {
   Ge
   Le
 } derive(Eq, @debug.Debug)
+pub fn Tok::equal(Self, Self) -> Bool
+pub fn Tok::not_equal(Self, Self) -> Bool
+pub fn Tok::to_repr(Self) -> @debug.Repr
 
 pub(all) struct TypeSpec {
   type_name : String
@@ -219,6 +261,9 @@ pub(all) struct TypeSpec {
   fields : Array[FieldSpec]
   require_any : Array[String]
 } derive(Eq, @debug.Debug)
+pub fn TypeSpec::equal(Self, Self) -> Bool
+pub fn TypeSpec::not_equal(Self, Self) -> Bool
+pub fn TypeSpec::to_repr(Self) -> @debug.Repr
 
 pub(all) enum ValueShape {
   String
@@ -250,8 +295,10 @@ pub(all) enum ValueShape {
   Url
   Any
 } derive(Eq, @debug.Debug)
+pub fn ValueShape::equal(Self, Self) -> Bool
+pub fn ValueShape::not_equal(Self, Self) -> Bool
+pub fn ValueShape::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 
 // Traits
-

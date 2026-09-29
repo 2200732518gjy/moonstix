@@ -14,39 +14,37 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-
       - name: Install MoonBit toolchain
         shell: bash
         run: |
+          export MOONBIT_INSTALL_DEV=1
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash -s latest
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
-
-      - name: Show toolchain versions
+      - name: Show and verify toolchain versions
         run: |
           moon version --all
-
+          python3 tools/check_moonc_version.py --minimum 0.10.14
       - name: Verify formatting
-        shell: bash
-        run: |
-          moon fmt
-          git diff --exit-code
-
+        run: moon fmt --check
       - name: Enforce source threshold
         run: python3 tools/count_effective_moonbit.py --check-core 2000
-
       - name: Check portable and native backends
         run: |
           moon check --target wasm-gc --deny-warn
           moon check --target wasm --deny-warn
           moon check --target js --deny-warn
           moon check --target native --deny-warn
-
+      - name: Build library and examples
+        run: |
+          moon build --target wasm-gc --deny-warn
+          moon build examples/parse_bundle --target wasm-gc --deny-warn
+          moon build examples/validate_indicator --target wasm-gc --deny-warn
+          moon build examples/sighting_graph --target wasm-gc --deny-warn
       - name: Test backends
         run: |
           moon test --target wasm-gc
           moon test --target js
           moon test --target native
-
       - name: Run examples
         run: |
           moon run examples/parse_bundle --target wasm-gc

@@ -10,6 +10,30 @@ pub(all) enum ObjectKind {
 } derive(Eq, Debug)
 
 ///|
+pub extend TypeSpec with Eq::{equal, not_equal}
+
+///|
+pub extend TypeSpec with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend FieldSpec with Eq::{equal, not_equal}
+
+///|
+pub extend FieldSpec with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend ValueShape with Eq::{equal, not_equal}
+
+///|
+pub extend ValueShape with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend ObjectKind with Eq::{equal, not_equal}
+
+///|
+pub extend ObjectKind with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
 /// Expected JSON shape of one property.
 pub(all) enum ValueShape {
   String
@@ -61,7 +85,7 @@ pub(all) struct TypeSpec {
 
 ///|
 fn field(name : String, required : Bool, shape : ValueShape) -> FieldSpec {
-  { name, required, shape }
+  { name, required, shape, }
 }
 
 ///|
@@ -71,7 +95,7 @@ fn spec(
   fields : Array[FieldSpec],
   require_any : Array[String],
 ) -> TypeSpec {
-  { type_name, kind, fields, require_any }
+  { type_name, kind, fields, require_any, }
 }
 
 ///|
